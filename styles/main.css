@@ -258,6 +258,11 @@ h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.15;margin:0}
 .seg-btn{flex:1;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:.7em;font-family:var(--font-head);
   font-weight:600;cursor:pointer;transition:.2s;color:var(--ink-soft)}
 .seg-btn.is-active{background:var(--terra);color:#fff;border-color:var(--terra)}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slot{font-family:var(--font-head);font-weight:600;font-size:.92rem;color:var(--brown-d);
+  background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:.5em .9em;cursor:pointer;transition:.15s}
+.slot:hover{border-color:var(--terra);transform:translateY(-2px)}
+.slot.is-sel{background:var(--terra);color:#fff;border-color:var(--terra)}
 .booking-submit{align-items:center;text-align:center;gap:12px;margin-top:4px}
 .form-status{margin:0;font-weight:700;min-height:1.2em}
 .form-status.ok{color:#2f8f5b}.form-status.err{color:#c0472b}

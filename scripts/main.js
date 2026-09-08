@@ -233,30 +233,85 @@
     $("#bf-pet").value = b.dataset.val;
   });
 
+  // Date bounds: today .. +30 days
+  const iso = d => d.toISOString().slice(0, 10);
+  const dateInput = $("#bf-date");
+  if (dateInput) {
+    dateInput.min = iso(new Date());
+    dateInput.max = iso(new Date(Date.now() + 30 * 86400000));
+  }
+
+  // Slot picker (grooming services). Hotel/pawplay are free-form requests.
+  const REQUEST_SVC = ["Зооготель 24/7", "Pawplay (погодинно)"];
+  const serviceSel = $("#bf-service");
+  const slotsField = $("#bf-slots-field"), slotsBox = $("#bf-slots"),
+    slotsHint = $("#bf-slots-hint"), timeInput = $("#bf-time");
+  let slotsToken = 0;
+  const needsSlot = () => serviceSel && serviceSel.value && !REQUEST_SVC.includes(serviceSel.value);
+
+  async function refreshSlots() {
+    if (!timeInput) return;
+    timeInput.value = "";
+    if (!CONFIG.bookingEndpoint || !needsSlot() || !dateInput.value) { slotsField.hidden = true; return; }
+    slotsField.hidden = false; slotsBox.innerHTML = ""; slotsHint.textContent = "завантаження…";
+    const my = ++slotsToken;
+    try {
+      const r = await fetch(`${CONFIG.bookingEndpoint}/slots?date=${dateInput.value}&service=${encodeURIComponent(serviceSel.value)}`);
+      const d = await r.json();
+      if (my !== slotsToken) return;
+      const slots = d.slots || [];
+      if (!slots.length) { slotsHint.textContent = "— на цей день вільних слотів немає"; return; }
+      slotsHint.textContent = "";
+      slots.forEach(t => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "slot"; b.textContent = t;
+        b.addEventListener("click", () => {
+          $$(".slot", slotsBox).forEach(x => x.classList.remove("is-sel"));
+          b.classList.add("is-sel"); timeInput.value = t;
+        });
+        slotsBox.appendChild(b);
+      });
+    } catch { if (my === slotsToken) slotsHint.textContent = "— не вдалося завантажити час"; }
+  }
+  serviceSel && serviceSel.addEventListener("change", refreshSlots);
+  dateInput && dateInput.addEventListener("change", refreshSlots);
+
   const form = $("#bookingForm"), status = $("#bfStatus");
   form && form.addEventListener("submit", async e => {
     e.preventDefault();
     status.className = "form-status"; status.textContent = "";
     if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (CONFIG.bookingEndpoint && needsSlot() && !timeInput.value) {
+      status.className = "form-status err"; status.textContent = "Оберіть, будь ласка, вільний час.";
+      return;
+    }
     const data = Object.fromEntries(new FormData(form).entries());
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true; status.textContent = "Надсилаємо…";
     try {
+      let request = false;
       if (CONFIG.bookingEndpoint) {
-        const res = await fetch(CONFIG.bookingEndpoint, {
+        const res = await fetch(`${CONFIG.bookingEndpoint}/book`, {
           method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data),
         });
-        if (!res.ok) throw new Error("bad");
+        const d = await res.json();
+        if (!d.ok) throw new Error(d.error || "bad");
+        request = d.request;
       } else {
-        await new Promise(r => setTimeout(r, 700)); // demo mode
+        await new Promise(r => setTimeout(r, 700)); // demo mode (endpoint not set yet)
       }
       status.className = "form-status ok";
-      status.textContent = "Дякуємо! Заявку надіслано — ми зв'яжемось для підтвердження.";
+      status.textContent = request
+        ? "Дякуємо! Заявку надіслано — ми зв'яжемось для підтвердження."
+        : "Готово! Запис створено — до зустрічі 🐾";
       form.reset(); $("#bf-pet").value = "Собака";
       $$(".seg-btn", petSeg).forEach((x, i) => x.classList.toggle("is-active", i === 0));
-    } catch {
+      slotsField.hidden = true;
+    } catch (err) {
       status.className = "form-status err";
-      status.textContent = "Не вдалося надіслати. Напишіть нам у месенджер, будь ласка.";
+      status.textContent = String(err.message || err) === "bad"
+        ? "Не вдалося надіслати. Напишіть нам у месенджер, будь ласка."
+        : (err.message || "Помилка. Спробуйте ще раз.");
     } finally { btn.disabled = false; }
   });
 
