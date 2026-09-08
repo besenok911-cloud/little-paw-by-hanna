@@ -1,0 +1,13 @@
+{
+  "name": "littlepaw-booking",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Little Paw by Hanna — booking Worker (Google Calendar + Telegram)",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
