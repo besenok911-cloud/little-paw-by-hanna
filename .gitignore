@@ -1,0 +1,8 @@
+# Raw Instagram media dump — source only, ~1.1 GB, not for the site
+littlepaw_by_hanna/
+
+# OS / editor cruft
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.log

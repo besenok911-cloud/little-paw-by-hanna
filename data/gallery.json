@@ -1,0 +1,714 @@
+{
+  "items": [
+    {
+      "id": "g158",
+      "src": "assets/gallery/g-158.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g159",
+      "src": "assets/gallery/g-159.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g642",
+      "src": "assets/gallery/g-642.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1911
+    },
+    {
+      "id": "g696",
+      "src": "assets/gallery/g-696.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g698",
+      "src": "assets/gallery/g-698.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g719",
+      "src": "assets/gallery/g-719.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1911
+    },
+    {
+      "id": "g176",
+      "src": "assets/gallery/g-176.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g713",
+      "src": "assets/gallery/g-713.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g716",
+      "src": "assets/gallery/g-716.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Шпіц",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g224",
+      "src": "assets/gallery/g-224.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Пудель",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g226",
+      "src": "assets/gallery/g-226.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Пудель",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g668",
+      "src": "assets/gallery/g-668.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Пудель",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g763",
+      "src": "assets/gallery/g-763.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Пудель",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g130",
+      "src": "assets/gallery/g-130.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Пудель",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g133",
+      "src": "assets/gallery/g-133.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Мальтезе",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1911
+    },
+    {
+      "id": "g456",
+      "src": "assets/gallery/g-456.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Бішон",
+      "service": "haircut",
+      "w": 1600,
+      "h": 2133
+    },
+    {
+      "id": "g458",
+      "src": "assets/gallery/g-458.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Бішон",
+      "service": "haircut",
+      "w": 1600,
+      "h": 2124
+    },
+    {
+      "id": "g673",
+      "src": "assets/gallery/g-673.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Мальтезе",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1911
+    },
+    {
+      "id": "g675",
+      "src": "assets/gallery/g-675.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Мальтезе",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1920
+    },
+    {
+      "id": "g272",
+      "src": "assets/gallery/g-272.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Ши-тцу",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g810",
+      "src": "assets/gallery/g-810.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Ши-тцу",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1440
+    },
+    {
+      "id": "g723",
+      "src": "assets/gallery/g-723.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Ши-тцу",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1911
+    },
+    {
+      "id": "g038",
+      "src": "assets/gallery/g-038.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Йорк",
+      "service": "haircut",
+      "w": 1600,
+      "h": 2133
+    },
+    {
+      "id": "g331",
+      "src": "assets/gallery/g-331.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Йорк",
+      "service": "haircut",
+      "w": 1600,
+      "h": 1630
+    },
+    {
+      "id": "g424",
+      "src": "assets/gallery/g-424.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Йорк",
+      "service": "haircut",
+      "w": 1600,
+      "h": 2133
+    },
+    {
+      "id": "g574",
+      "src": "assets/gallery/g-574.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Йорк",
+      "service": "haircut",
+      "w": 720,
+      "h": 960
+    },
+    {
+      "id": "g139",
+      "src": "assets/gallery/g-139.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Кокер",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1822
+    },
+    {
+      "id": "g677",
+      "src": "assets/gallery/g-677.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Кокер",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1822
+    },
+    {
+      "id": "g080",
+      "src": "assets/gallery/g-080.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Кавалер",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1364
+    },
+    {
+      "id": "g618",
+      "src": "assets/gallery/g-618.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Кавалер",
+      "service": "haircut",
+      "w": 1440,
+      "h": 1364
+    },
+    {
+      "id": "g065",
+      "src": "assets/gallery/g-065.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Чихуахуа",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1920
+    },
+    {
+      "id": "g603",
+      "src": "assets/gallery/g-603.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Чихуахуа",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1920
+    },
+    {
+      "id": "g221",
+      "src": "assets/gallery/g-221.webp",
+      "species": "dog",
+      "kind": "portrait",
+      "breed": "Аусі",
+      "service": "hygiene",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g292",
+      "src": "assets/gallery/g-292.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1216,
+      "h": 1518
+    },
+    {
+      "id": "g293",
+      "src": "assets/gallery/g-293.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1080,
+      "h": 1348
+    },
+    {
+      "id": "g294",
+      "src": "assets/gallery/g-294.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1216,
+      "h": 1518
+    },
+    {
+      "id": "g295",
+      "src": "assets/gallery/g-295.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1216,
+      "h": 1518
+    },
+    {
+      "id": "g296",
+      "src": "assets/gallery/g-296.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1216,
+      "h": 1518
+    },
+    {
+      "id": "g297",
+      "src": "assets/gallery/g-297.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1216,
+      "h": 1518
+    },
+    {
+      "id": "g298",
+      "src": "assets/gallery/g-298.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1216,
+      "h": 1518
+    },
+    {
+      "id": "g299",
+      "src": "assets/gallery/g-299.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1216,
+      "h": 1518
+    },
+    {
+      "id": "g300",
+      "src": "assets/gallery/g-300.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1216,
+      "h": 1518
+    },
+    {
+      "id": "g364",
+      "src": "assets/gallery/g-364.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1080,
+      "h": 1350
+    },
+    {
+      "id": "g365",
+      "src": "assets/gallery/g-365.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1080,
+      "h": 1350
+    },
+    {
+      "id": "g366",
+      "src": "assets/gallery/g-366.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1080,
+      "h": 1350
+    },
+    {
+      "id": "g367",
+      "src": "assets/gallery/g-367.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1080,
+      "h": 1350
+    },
+    {
+      "id": "g368",
+      "src": "assets/gallery/g-368.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1080,
+      "h": 1350
+    },
+    {
+      "id": "g369",
+      "src": "assets/gallery/g-369.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1080,
+      "h": 1350
+    },
+    {
+      "id": "g447",
+      "src": "assets/gallery/g-447.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g448",
+      "src": "assets/gallery/g-448.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g449",
+      "src": "assets/gallery/g-449.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g450",
+      "src": "assets/gallery/g-450.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g451",
+      "src": "assets/gallery/g-451.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g452",
+      "src": "assets/gallery/g-452.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g453",
+      "src": "assets/gallery/g-453.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g454",
+      "src": "assets/gallery/g-454.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g455",
+      "src": "assets/gallery/g-455.webp",
+      "species": "dog",
+      "kind": "beforeafter",
+      "breed": "",
+      "service": "haircut",
+      "w": 1351,
+      "h": 1688
+    },
+    {
+      "id": "g249",
+      "src": "assets/gallery/g-249.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g250",
+      "src": "assets/gallery/g-250.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g251",
+      "src": "assets/gallery/g-251.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g252",
+      "src": "assets/gallery/g-252.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g254",
+      "src": "assets/gallery/g-254.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g791",
+      "src": "assets/gallery/g-791.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g793",
+      "src": "assets/gallery/g-793.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g794",
+      "src": "assets/gallery/g-794.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g795",
+      "src": "assets/gallery/g-795.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "g796",
+      "src": "assets/gallery/g-796.webp",
+      "species": "dog",
+      "kind": "hotel",
+      "breed": "",
+      "service": "hotel",
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "id": "cat030",
+      "src": "assets/gallery/cat-030.webp",
+      "species": "cat",
+      "kind": "portrait",
+      "breed": "Котик",
+      "service": "cats",
+      "w": 360,
+      "h": 640
+    },
+    {
+      "id": "cat809",
+      "src": "assets/gallery/cat-809.webp",
+      "species": "cat",
+      "kind": "portrait",
+      "breed": "Котик",
+      "service": "cats",
+      "w": 360,
+      "h": 640
+    },
+    {
+      "id": "cat071",
+      "src": "assets/gallery/cat-071.webp",
+      "species": "cat",
+      "kind": "portrait",
+      "breed": "Котик",
+      "service": "cats",
+      "w": 720,
+      "h": 1280
+    },
+    {
+      "id": "cat492",
+      "src": "assets/gallery/cat-492.webp",
+      "species": "cat",
+      "kind": "portrait",
+      "breed": "Котик",
+      "service": "cats",
+      "w": 1485,
+      "h": 1113
+    }
+  ]
+}
