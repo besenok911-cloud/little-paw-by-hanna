@@ -338,12 +338,20 @@ h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.15;margin:0}
   .qa-grid{grid-template-columns:1fr}
 }
 @media (max-width:520px){
+  .section{padding:46px 0}
   .values-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .value-card{padding:22px 14px}
+  .value-card{padding:20px 12px}
+  .value-card h3{font-size:1.1rem;margin:10px 0 5px}
+  .value-card p{font-size:.9rem}
+  .value-card .i-lg{width:38px;height:38px}
   .hotel-photos img:first-child{margin-top:0}
   .booking-form{grid-template-columns:1fr}
   .hero-actions .btn,.hero-actions{width:100%}
   .brand-name{font-size:1rem}
+  /* price tables fit the screen — no cut-off 3rd column */
+  .price-table{min-width:0}
+  .price-table th,.price-table td{padding:.58em .5em;font-size:.9rem}
+  .price-table thead th{font-size:.78rem}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}

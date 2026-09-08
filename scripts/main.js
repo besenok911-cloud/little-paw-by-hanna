@@ -44,7 +44,7 @@
   /* ---- Reveal on scroll ---- */
   const revObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); } });
-  }, { threshold: 0.12 });
+  }, { threshold: 0, rootMargin: "0px 0px 120px 0px" });
   const observeReveals = () => $$(".reveal:not(.in)").forEach(el => revObserver.observe(el));
   observeReveals();
 
@@ -134,7 +134,7 @@
 
   const gObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); } });
-  }, { threshold: 0.05 });
+  }, { threshold: 0, rootMargin: "0px 0px 120px 0px" });
 
   // Autoplay (muted) feed videos only while in view; pause when out.
   const videoObserver = new IntersectionObserver((entries) => {
