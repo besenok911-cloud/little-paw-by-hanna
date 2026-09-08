@@ -82,7 +82,7 @@
         cat.columns.map(c => `<th>${c}</th>`).join("") + `</tr></thead><tbody>` +
         cat.rows.map(row => `<tr>` + row.map(c => `<td>${c}</td>`).join("") + `</tr>`).join("") +
         `</tbody></table></div>`;
-      html += `<div class="price-cat-cta"><a href="#booking" class="btn btn-primary">Записатись на «${cat.title.toLowerCase()}»</a></div>`;
+      html += `<div class="price-cat-cta"><a href="#booking" class="btn btn-primary">Записатись на цю послугу</a></div>`;
       panel.innerHTML = html;
       panels.appendChild(panel);
     });

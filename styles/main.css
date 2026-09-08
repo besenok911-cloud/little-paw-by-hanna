@@ -201,6 +201,7 @@ h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.15;margin:0}
 .price-table tr.book-row td{text-align:center;padding:0}
 .price-empty{text-align:center;color:var(--ink-soft);padding:22px}
 .price-cat-cta{margin-top:14px;text-align:center}
+.price-cat-cta .btn{white-space:normal;max-width:100%}
 .price-notes{margin-top:28px;text-align:center}
 .note-gift{display:inline-block;background:var(--gold);color:#4a3200;font-weight:800;
   padding:.8em 1.4em;border-radius:16px;box-shadow:var(--shadow-sm);max-width:640px}
@@ -325,9 +326,9 @@ h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.15;margin:0}
   .booking-form{grid-template-columns:1fr 1fr}
 }
 @media (max-width:760px){
-  .main-nav,.btn-book-nav{display:none}
-  .main-nav{position:fixed;inset:70px 0 auto 0;flex-direction:column;background:var(--paper);
-    padding:18px 24px;gap:6px;box-shadow:var(--shadow);transform:translateY(-140%);transition:transform .35s ease;z-index:55}
+  .btn-book-nav{display:none}
+  .main-nav{display:flex;position:fixed;inset:70px 0 auto 0;flex-direction:column;background:var(--paper);
+    padding:14px 24px 20px;gap:4px;box-shadow:var(--shadow);transform:translateY(-150%);transition:transform .35s ease;z-index:55}
   .main-nav.open{transform:none}
   .main-nav a{padding:12px 4px;border-bottom:1px solid var(--line);font-size:1.05rem}
   .nav-toggle{display:flex;margin-left:auto}
