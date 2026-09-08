@@ -13,8 +13,8 @@
     phoneLabel: "+38 063 393 37 77",
     telegram: "https://t.me/+380633933777",
     viber: "viber://chat?number=%2B380633933777",
-    // Booking endpoint (Cloudflare Worker → Telegram). Empty = demo mode.
-    bookingEndpoint: "",
+    // Booking endpoint (Cloudflare Worker → Google Calendar + Telegram). Empty = demo mode.
+    bookingEndpoint: "https://littlepaw-booking.besenok911.workers.dev",
   };
 
   /* ---- Year ---- */
