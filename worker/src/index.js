@@ -168,7 +168,8 @@ function parseDate(s) {
 async function getSlots(url, env) {
   const { y, m, d } = parseDate(url.searchParams.get("date"));
   const service = url.searchParams.get("service") || "";
-  const duration = SERVICE_DURATIONS[service] || DEFAULT_DURATION;
+  const passed = parseInt(url.searchParams.get("duration") || "0", 10);
+  const duration = (passed > 0) ? passed : (SERVICE_DURATIONS[service] || DEFAULT_DURATION);
 
   const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
   if (!BUSINESS.workingDays.includes(dow)) return { ok: true, slots: [] };
@@ -204,7 +205,8 @@ async function book(body, env) {
     const tm = /^(\d{2}):(\d{2})$/.exec(time);
     if (!tm) return { ok: false, error: "bad time" };
     const startMin = (+tm[1]) * 60 + (+tm[2]);
-    const duration = SERVICE_DURATIONS[service] || DEFAULT_DURATION;
+    const passed = parseInt(body.duration || 0, 10);
+    const duration = (passed > 0) ? passed : (SERVICE_DURATIONS[service] || DEFAULT_DURATION);
 
     const token = await getAccessToken(env);
     // re-check the slot is still free (double-booking guard)

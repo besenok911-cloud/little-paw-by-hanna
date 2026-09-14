@@ -78,9 +78,11 @@
       if (cat.searchable) {
         html += `<input type="search" class="price-search" placeholder="Пошук породи…" aria-label="Пошук породи" data-cat="${cat.id}">`;
       }
+      const durIdx = cat.columns.indexOf("Час");
+      const cls = i => i === durIdx ? ' class="dur"' : "";
       html += `<div class="price-table-wrap"><table class="price-table"><thead><tr>` +
-        cat.columns.map(c => `<th>${c}</th>`).join("") + `</tr></thead><tbody>` +
-        cat.rows.map(row => `<tr>` + row.map(c => `<td>${c}</td>`).join("") + `</tr>`).join("") +
+        cat.columns.map((c, i) => `<th${cls(i)}>${c}</th>`).join("") + `</tr></thead><tbody>` +
+        cat.rows.map(row => `<tr>` + row.map((c, i) => `<td${cls(i)}>${c}</td>`).join("") + `</tr>`).join("") +
         `</tbody></table></div>`;
       html += `<div class="price-cat-cta"><a href="#booking" class="btn btn-primary">Записатись на цю послугу</a></div>`;
       panel.innerHTML = html;
@@ -247,6 +249,37 @@
   const slotsField = $("#bf-slots-field"), slotsBox = $("#bf-slots"),
     slotsHint = $("#bf-slots-hint"), timeInput = $("#bf-time");
   let slotsToken = 0;
+
+  // Breed/item select populated from the price list → per-item duration for accurate slots
+  const SERVICE_TO_CAT = {
+    "Повний гігієнічний догляд": "hygiene-dogs",
+    "Комплексний догляд + стрижка": "haircut-dogs",
+    "Догляд для котиків": "cats",
+    "Окремі послуги (кігті, вушка, зуби…)": "extra",
+  };
+  const durToMin = s => { s = String(s || ""); const h = (s.match(/(\d+)\s*(?:г|год)/) || [])[1]; const m = (s.match(/(\d+)\s*хв/) || [])[1]; return (+h || 0) * 60 + (+m || 0); };
+  const breedInput = $("#bf-breed");
+  let breedSel = null;
+  const catFor = svc => { const id = SERVICE_TO_CAT[svc]; return (id && window.LP_PRICES) ? window.LP_PRICES.categories.find(c => c.id === id) || null : null; };
+  function updateBreedField() {
+    if (!breedInput) return;
+    if (!breedSel) {
+      breedSel = document.createElement("select");
+      breedSel.id = "bf-breed-select"; breedSel.hidden = true;
+      breedSel.addEventListener("change", refreshSlots);
+      breedInput.parentNode.appendChild(breedSel);
+    }
+    const cat = catFor(serviceSel.value);
+    if (cat) {
+      const di = cat.columns.indexOf("Час");
+      breedSel.innerHTML = '<option value="">Оберіть…</option>' +
+        cat.rows.map(r => `<option value="${r[0]}" data-min="${di >= 0 ? durToMin(r[di]) : 0}">${r[0]}${di >= 0 ? " · " + r[di] : ""}</option>`).join("");
+      breedSel.hidden = false; breedInput.hidden = true; breedInput.value = "";
+    } else if (breedSel) {
+      breedSel.hidden = true; breedInput.hidden = false;
+    }
+  }
+  const selectedDuration = () => (breedSel && !breedSel.hidden && breedSel.selectedOptions[0]) ? (+breedSel.selectedOptions[0].dataset.min || 0) : 0;
   const needsSlot = () => serviceSel && serviceSel.value && !REQUEST_SVC.includes(serviceSel.value);
 
   async function refreshSlots() {
@@ -256,7 +289,7 @@
     slotsField.hidden = false; slotsBox.innerHTML = ""; slotsHint.textContent = "завантаження…";
     const my = ++slotsToken;
     try {
-      const r = await fetch(`${CONFIG.bookingEndpoint}/slots?date=${dateInput.value}&service=${encodeURIComponent(serviceSel.value)}`);
+      const r = await fetch(`${CONFIG.bookingEndpoint}/slots?date=${dateInput.value}&service=${encodeURIComponent(serviceSel.value)}&duration=${selectedDuration()}`);
       const d = await r.json();
       if (my !== slotsToken) return;
       const slots = d.slots || [];
@@ -273,7 +306,7 @@
       });
     } catch { if (my === slotsToken) slotsHint.textContent = "— не вдалося завантажити час"; }
   }
-  serviceSel && serviceSel.addEventListener("change", refreshSlots);
+  serviceSel && serviceSel.addEventListener("change", () => { updateBreedField(); refreshSlots(); });
   dateInput && dateInput.addEventListener("change", refreshSlots);
 
   const form = $("#bookingForm"), status = $("#bfStatus");
@@ -286,6 +319,8 @@
       return;
     }
     const data = Object.fromEntries(new FormData(form).entries());
+    if (breedSel && !breedSel.hidden && breedSel.value) data.breed = breedSel.value;
+    data.duration = selectedDuration();
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true; status.textContent = "Надсилаємо…";
     try {
@@ -306,7 +341,7 @@
         : "Готово! Запис створено — до зустрічі 🐾";
       form.reset(); $("#bf-pet").value = "Собака";
       $$(".seg-btn", petSeg).forEach((x, i) => x.classList.toggle("is-active", i === 0));
-      slotsField.hidden = true;
+      slotsField.hidden = true; updateBreedField();
     } catch (err) {
       status.className = "form-status err";
       status.textContent = String(err.message || err) === "bad"

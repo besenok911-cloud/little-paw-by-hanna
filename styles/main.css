@@ -195,6 +195,7 @@ h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.15;margin:0}
 .price-table thead th{background:var(--cream-2);color:var(--brown-d);font-family:var(--font-head);font-weight:600;
   font-size:.88rem;position:sticky;top:0}
 .price-table th+th,.price-table td+td{text-align:right;white-space:nowrap;font-weight:700;color:var(--terra-d)}
+.price-table th.dur,.price-table td.dur{color:var(--ink-soft);font-weight:500;font-size:.85rem;text-align:right;white-space:nowrap}
 .price-table tbody tr{border-top:1px solid var(--line)}
 .price-table tbody tr:nth-child(even){background:rgba(233,220,201,.35)}
 .price-table tbody td:first-child{font-weight:600;color:var(--ink)}
