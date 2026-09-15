@@ -6,6 +6,12 @@ compatibility_date = "2024-09-01"
 # Origin allowed to call the Worker (the live site). Change if the domain changes.
 ALLOW_ORIGIN = "https://besenok911-cloud.github.io"
 
+# CRM database (Cloudflare D1) — stores every booking for the admin dashboard.
+[[d1_databases]]
+binding = "DB"
+database_name = "littlepaw-crm"
+database_id = "d1e9f064-578f-4277-b751-b76189336bf8"
+
 # Secrets are NOT stored here. Set them with:
 #   wrangler secret put SA_EMAIL
 #   wrangler secret put SA_PRIVATE_KEY

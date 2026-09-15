@@ -55,6 +55,13 @@ export default {
       if (url.pathname === "/book" && request.method === "POST") {
         return json(await book(await request.json(), env), cors);
       }
+      if (url.pathname === "/admin" && request.method === "GET") {
+        if (!env.ADMIN_KEY || url.searchParams.get("key") !== env.ADMIN_KEY)
+          return json({ ok: false, error: "unauthorized" }, cors, 401);
+        const { results } = await env.DB.prepare(
+          "SELECT * FROM bookings ORDER BY id DESC LIMIT 5000").all();
+        return json({ ok: true, bookings: results }, cors);
+      }
       return json({ ok: false, error: "not found" }, cors, 404);
     } catch (e) {
       return json({ ok: false, error: String(e && e.message || e) }, cors, 500);
@@ -235,6 +242,21 @@ async function book(body, env) {
     const ev = await res.json();
     if (!ev.id) throw new Error("event insert failed: " + JSON.stringify(ev));
     eventLink = ev.htmlLink;
+  }
+
+  // Save to CRM database (never block the booking if this fails)
+  if (env.DB) {
+    try {
+      await env.DB.prepare(
+        `INSERT INTO bookings (created_at,pet,breed,service,name,phone,date,time,duration,price_min,price_max,is_request,note)
+         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`
+      ).bind(
+        new Date().toISOString(), pet || "", breed || "", service || "", name || "", phone || "",
+        date || "", time || "", parseInt(body.duration || 0, 10) || null,
+        parseInt(body.price_min || 0, 10) || null, parseInt(body.price_max || 0, 10) || null,
+        isRequest ? 1 : 0, note || ""
+      ).run();
+    } catch (e) { /* CRM write is best-effort */ }
   }
 
   await notifyTelegram(env, { pet, service, breed, name, phone, date, time, note, isRequest });

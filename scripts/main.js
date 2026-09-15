@@ -272,8 +272,14 @@
     const cat = catFor(serviceSel.value);
     if (cat) {
       const di = cat.columns.indexOf("Час");
+      const toInt = s => { const m = String(s).match(/\d+/); return m ? +m[0] : ""; };
       breedSel.innerHTML = '<option value="">Оберіть…</option>' +
-        cat.rows.map(r => `<option value="${r[0]}" data-min="${di >= 0 ? durToMin(r[di]) : 0}">${r[0]}${di >= 0 ? " · " + r[di] : ""}</option>`).join("");
+        cat.rows.map(r => {
+          const dur = di >= 0 ? durToMin(r[di]) : 0;
+          const pmin = toInt(r[1]);
+          const pmax = di >= 3 ? toInt(r[2]) : pmin;
+          return `<option value="${r[0]}" data-min="${dur}" data-pmin="${pmin}" data-pmax="${pmax}">${r[0]}${di >= 0 ? " · " + r[di] : ""}</option>`;
+        }).join("");
       breedSel.hidden = false; breedInput.hidden = true; breedInput.value = "";
     } else if (breedSel) {
       breedSel.hidden = true; breedInput.hidden = false;
@@ -321,6 +327,8 @@
     const data = Object.fromEntries(new FormData(form).entries());
     if (breedSel && !breedSel.hidden && breedSel.value) data.breed = breedSel.value;
     data.duration = selectedDuration();
+    const bo = (breedSel && !breedSel.hidden) ? breedSel.selectedOptions[0] : null;
+    if (bo) { data.price_min = bo.dataset.pmin || ""; data.price_max = bo.dataset.pmax || ""; }
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true; status.textContent = "Надсилаємо…";
     try {
