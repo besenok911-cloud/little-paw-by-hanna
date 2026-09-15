@@ -15,6 +15,8 @@
     viber: "viber://chat?number=%2B380633933777",
     // Booking endpoint (Cloudflare Worker → Google Calendar + Telegram). Empty = demo mode.
     bookingEndpoint: "https://littlepaw-booking.besenok911.workers.dev",
+    // Payment (Monobank) — OFF until the salon has acquiring + a chosen model. See worker/PAYMENTS.md
+    payment: { enabled: false, mode: "deposit", depositAmount: 200 },
   };
 
   /* ---- Year ---- */

@@ -62,6 +62,12 @@ export default {
           "SELECT * FROM bookings ORDER BY id DESC LIMIT 5000").all();
         return json({ ok: true, bookings: results }, cors);
       }
+      if (url.pathname === "/pay/create" && request.method === "POST") {
+        return json(await payCreate(await request.json(), env, request), cors);
+      }
+      if (url.pathname === "/pay/webhook" && request.method === "POST") {
+        return json(await payWebhook(await request.json().catch(() => ({})), env), cors);
+      }
       if (url.pathname === "/admin/status" && request.method === "POST") {
         const b = await request.json();
         if (!env.ADMIN_KEY || b.key !== env.ADMIN_KEY)
@@ -254,9 +260,10 @@ async function book(body, env) {
   }
 
   // Save to CRM database (never block the booking if this fails)
+  let bookingId = null;
   if (env.DB) {
     try {
-      await env.DB.prepare(
+      const res = await env.DB.prepare(
         `INSERT INTO bookings (created_at,pet,breed,service,name,phone,date,time,duration,price_min,price_max,is_request,note)
          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`
       ).bind(
@@ -265,11 +272,50 @@ async function book(body, env) {
         parseInt(body.price_min || 0, 10) || null, parseInt(body.price_max || 0, 10) || null,
         isRequest ? 1 : 0, note || ""
       ).run();
+      bookingId = res.meta && res.meta.last_row_id;
     } catch (e) { /* CRM write is best-effort */ }
   }
 
   await notifyTelegram(env, { pet, service, breed, name, phone, date, time, note, isRequest });
-  return { ok: true, request: isRequest };
+  return { ok: true, request: isRequest, bookingId };
+}
+
+/* ----------------------------- Payments (Monobank Acquiring) ----------------------------- */
+// Disabled until the MONO_TOKEN secret is set. Frontend keeps CONFIG.payment.enabled = false
+// until the salon has an acquiring account and a chosen model (deposit / full / which services).
+async function payCreate(body, env, request) {
+  if (!env.MONO_TOKEN) return { ok: false, disabled: true, error: "Оплата ще не підключена" };
+  const amount = Math.round((+body.amount || 0) * 100); // грн -> копійки
+  if (amount < 100) return { ok: false, error: "bad amount" };
+  const origin = new URL(request.url).origin;
+  const res = await fetch("https://api.monobank.ua/api/merchant/invoice/create", {
+    method: "POST",
+    headers: { "X-Token": env.MONO_TOKEN, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      amount, ccy: 980,
+      merchantPaymInfo: { reference: String(body.bookingId || ""), destination: body.description || "Оплата запису Little Paw" },
+      redirectUrl: (env.ALLOW_ORIGIN || "") + "/#booking",
+      webHookUrl: origin + "/pay/webhook",
+    }),
+  });
+  const data = await res.json();
+  if (!data.pageUrl) return { ok: false, error: "invoice failed: " + JSON.stringify(data) };
+  if (env.DB && body.bookingId) {
+    try { await env.DB.prepare("UPDATE bookings SET invoice_id=? WHERE id=?").bind(data.invoiceId, body.bookingId).run(); } catch (e) {}
+  }
+  return { ok: true, pageUrl: data.pageUrl, invoiceId: data.invoiceId };
+}
+
+async function payWebhook(body, env) {
+  // Re-verify status server-side (don't trust the webhook body alone)
+  if (!env.MONO_TOKEN || !body.invoiceId) return { ok: true };
+  const res = await fetch("https://api.monobank.ua/api/merchant/invoice/status?invoiceId=" + encodeURIComponent(body.invoiceId),
+    { headers: { "X-Token": env.MONO_TOKEN } });
+  const data = await res.json();
+  if (data.status === "success" && env.DB) {
+    try { await env.DB.prepare("UPDATE bookings SET paid=1 WHERE invoice_id=?").bind(body.invoiceId).run(); } catch (e) {}
+  }
+  return { ok: true };
 }
 
 async function notifyTelegram(env, b) {

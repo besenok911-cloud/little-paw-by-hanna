@@ -13,7 +13,9 @@ CREATE TABLE IF NOT EXISTS bookings (
   price_max INTEGER,
   is_request INTEGER DEFAULT 0,
   status    TEXT DEFAULT 'new',
-  note      TEXT
+  note      TEXT,
+  paid      INTEGER DEFAULT 0,
+  invoice_id TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_bookings_phone ON bookings(phone);
 CREATE INDEX IF NOT EXISTS idx_bookings_date  ON bookings(date);
