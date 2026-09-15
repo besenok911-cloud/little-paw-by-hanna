@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Little Paw — комерційна пропозиція</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF6EE; --surface:#FFFFFF; --sand:#F4E8D6; --sand-2:#EFE0CB;
+  --ink:#3A2A1E; --ink-soft:#6E5844; --muted:#93795F;
+  --line:#E7D8C0; --line-soft:#F0E4D2;
+  --accent:#C25E38; --accent-ink:#A44C2B; --accent-soft:#F3DBCC;
+  --gold:#BE8C33;
+  --shadow:0 20px 44px -30px rgba(58,42,30,.55);
+  --font-head:"Comfortaa",system-ui,sans-serif;
+  --font-body:"Nunito",system-ui,sans-serif;
+  --font-script:"Caveat",cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#1E1712; --surface:#2A211A; --sand:#33271F; --sand-2:#3B2E24;
+  --ink:#F2E7D8; --ink-soft:#CDB9A2; --muted:#A38D77;
+  --line:#3F3327; --line-soft:#342a20;
+  --accent:#DE8659; --accent-ink:#E9A17C; --accent-soft:#3A2A1F;
+  --gold:#DCB061;
+  --shadow:0 24px 50px -30px rgba(0,0,0,.7);
+}}
+:root[data-theme="dark"]{
+  --paper:#1E1712; --surface:#2A211A; --sand:#33271F; --sand-2:#3B2E24;
+  --ink:#F2E7D8; --ink-soft:#CDB9A2; --muted:#A38D77;
+  --line:#3F3327; --line-soft:#342a20;
+  --accent:#DE8659; --accent-ink:#E9A17C; --accent-soft:#3A2A1F;
+  --gold:#DCB061;
+  --shadow:0 24px 50px -30px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);
+  line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+img{max-width:100%}
+.wrap{width:min(100% - 40px,820px);margin:0 auto;padding:48px 0 72px}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  box-shadow:var(--shadow);overflow:hidden}
+.pad{padding:clamp(26px,5vw,52px)}
+h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.2;margin:0;text-wrap:balance}
+.paw{width:1em;height:1em;fill:var(--accent);flex:none;vertical-align:-.12em}
+
+/* Masthead */
+.mast{background:linear-gradient(180deg,var(--sand),var(--surface));border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;
+  color:var(--accent-ink);font-size:1.05rem;letter-spacing:.01em}
+.brand .paw{width:26px;height:26px}
+.brand em{font-style:normal;font-weight:500;color:var(--muted);font-size:.82em}
+.eyebrow{display:inline-block;font-weight:800;text-transform:uppercase;letter-spacing:.14em;
+  font-size:.72rem;color:var(--accent-ink);margin:26px 0 10px}
+.mast h1{font-size:clamp(1.9rem,5vw,2.7rem);color:var(--ink)}
+.mast .lede{color:var(--ink-soft);margin:.5em 0 0;max-width:44ch;font-size:1.05rem}
+.slogan{font-family:var(--font-script);font-size:1.5rem;color:var(--accent);margin-top:20px}
+
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--line);border-top:1px solid var(--line)}
+.meta div{background:var(--surface);padding:16px 20px}
+.meta dt{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700;margin:0}
+.meta dd{margin:5px 0 0;font-weight:700;color:var(--ink)}
+.meta .edit{color:var(--accent-ink)}
+
+/* Sections */
+section{border-top:1px solid var(--line-soft)}
+.s-head{display:flex;align-items:baseline;gap:12px;margin:0 0 18px}
+.s-num{font-family:var(--font-head);font-weight:700;color:var(--accent);font-size:1rem;
+  font-variant-numeric:tabular-nums}
+.s-head h2{font-size:1.35rem;color:var(--ink)}
+p{margin:0 0 14px;max-width:66ch}
+p:last-child{margin-bottom:0}
+.muted{color:var(--ink-soft)}
+
+/* Scope grid */
+.scope{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.block{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.block h3{font-size:1rem;color:var(--accent-ink);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.block ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:.95rem}
+.block li{margin:5px 0}
+.block li b{color:var(--ink);font-weight:700}
+
+/* Price table */
+.tbl{width:100%;border-collapse:collapse;font-size:.97rem}
+.tbl th,.tbl td{text-align:left;padding:13px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+.tbl thead th{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}
+.tbl td.sum,.tbl th.sum{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700}
+.tbl td:first-child{font-weight:700;color:var(--ink)}
+.tbl .desc{color:var(--muted);font-weight:400;font-size:.88rem;display:block;margin-top:3px}
+.tbl tr.total td{border-top:2px solid var(--accent);border-bottom:none;padding-top:16px;font-size:1.05rem}
+.tbl tr.total td.sum{color:var(--accent-ink);font-size:1.4rem;font-family:var(--font-head)}
+.note{font-size:.82rem;color:var(--muted);margin-top:14px;display:flex;gap:8px;align-items:flex-start}
+.note .paw{width:.9em;height:.9em;margin-top:.3em}
+
+/* Included / running costs */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cost{background:var(--sand);border-radius:14px;padding:18px 20px}
+.cost h3{font-size:.95rem;margin-bottom:8px;color:var(--ink)}
+.cost .big{font-family:var(--font-head);font-weight:700;color:var(--accent-ink);font-size:1.15rem}
+.cost p{font-size:.9rem;color:var(--ink-soft);margin:6px 0 0}
+
+/* Steps */
+.steps{display:grid;gap:2px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:14px;overflow:hidden}
+.step{background:var(--surface);display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 18px;align-items:baseline}
+.step b{font-family:var(--font-head);color:var(--accent);font-variant-numeric:tabular-nums;font-size:.95rem}
+.step span{color:var(--ink-soft);font-size:.95rem}
+.step span strong{color:var(--ink);font-weight:700}
+
+/* Terms */
+.terms{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.terms li{display:grid;grid-template-columns:auto 1fr;gap:12px;color:var(--ink-soft);font-size:.96rem}
+.terms li .paw{margin-top:.32em}
+.terms b{color:var(--ink)}
+
+/* Footer */
+.foot{background:linear-gradient(0deg,var(--sand),var(--surface));border-top:1px solid var(--line);
+  text-align:center}
+.foot .slogan{margin:0 0 6px}
+.foot p{margin:0 auto;color:var(--muted);font-size:.9rem;max-width:50ch}
+.foot .contacts{margin-top:14px;font-weight:700;color:var(--ink)}
+.foot .contacts .edit{color:var(--accent-ink)}
+
+.edit{ }
+@media (max-width:600px){
+  .scope,.cols{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}
+  .wrap{width:100%;padding:0}
+  .sheet{border:none;box-shadow:none;border-radius:0}
+  section{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div class="sheet">
+
+  <!-- Masthead -->
+  <div class="mast pad">
+    <div class="brand">
+      <svg class="paw" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>
+      Little&nbsp;Paw <em>by Hanna</em>
+    </div>
+    <p class="eyebrow">Комерційна пропозиція</p>
+    <h1>Сайт грумінг-салону та зооготелю</h1>
+    <p class="lede">Розробка сучасного сайту-візитки з онлайн-записом і двосторонньою синхронізацією з Google&nbsp;Calendar.</p>
+    <p class="slogan">Турбота, як вдома 🐾</p>
+  </div>
+
+  <dl class="meta">
+    <div><dt>Виконавець</dt><dd>Іван Бессараб</dd></div>
+    <div><dt>Замовник</dt><dd>Little Paw by Hanna</dd></div>
+    <div><dt>Дата</dt><dd>10.09.2026</dd></div>
+    <div><dt>Дійсна до</dt><dd>24.09.2026</dd></div>
+  </dl>
+
+  <!-- 1. Про проєкт -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">01</span><h2>Про проєкт</h2></div>
+    <p>Кастомний сайт для грумінг-салону та зооготелю «Little Paw by Hanna»: тепла, довірлива атмосфера бренду, повний прайс із пошуком за породою, галерея реальних робіт (фото та відео) і <b>самостійний онлайн-запис без дзвінків та листування в директ</b>.</p>
+    <p class="muted">Головний акцент — зручність для власника тварини та автоматизація запису, синхронізованого з робочим календарем майстрині. Сайт адаптивний (mobile-first), бо основний трафік — переходи з Instagram.</p>
+  </section>
+
+  <!-- 2. Обсяг робіт -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">02</span><h2>Що входить у роботу</h2></div>
+    <div class="scope">
+      <div class="block">
+        <h3><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>Сайт і дизайн</h3>
+        <ul>
+          <li>Індивідуальний дизайн у стилі бренду</li>
+          <li><b>Адаптив</b> під телефон, планшет, ПК</li>
+          <li>Плавні анімації, мікровзаємодії</li>
+          <li>Розділи: головна, про майстриню, послуги, галерея, готель, контакти</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>Послуги та ціни</h3>
+        <ul>
+          <li>6 категорій, <b>60+ порід</b> у прайсі</li>
+          <li>Пошук за породою, зручні таблиці</li>
+          <li>Редагування цін власницею <b>без розробника</b></li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>Галерея робіт</h3>
+        <ul>
+          <li><b>70+ фото та 11 відео</b>, фільтри, «до/після»</li>
+          <li>Перегляд на весь екран, свайп</li>
+          <li>Відбір і оптимізація з <b>800+ вихідних файлів</b></li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>Онлайн-запис + календар</h3>
+        <ul>
+          <li><b>Двостороння синхронізація з Google&nbsp;Calendar</b></li>
+          <li>Вибір послуги, дати й вільного часу</li>
+          <li>Захист від подвійного бронювання</li>
+          <li>Сповіщення про запис у <b>Telegram</b></li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>Контент і бренд</h3>
+        <ul>
+          <li>Розшифровка прайсу, тексти філософії</li>
+          <li>Обробка логотипа (прозорий фон)</li>
+          <li>Карта, месенджери, клік-дзвінок</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>Технічне</h3>
+        <ul>
+          <li>Публікація сайту (хостинг), SSL</li>
+          <li>Базове SEO, оптимізація швидкості</li>
+          <li>Документація та навчання власниці</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Вартість -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">03</span><h2>Вартість</h2></div>
+    <table class="tbl">
+      <thead><tr><th>Позиція</th><th class="sum">Вартість, $</th></tr></thead>
+      <tbody>
+        <tr><td>Дизайн і верстка сайту<span class="desc">Усі розділи, адаптив, анімації</span></td><td class="sum">$380</td></tr>
+        <tr><td>Прайс-система та галерея<span class="desc">Пошук по породах, обробка 800+ медіафайлів</span></td><td class="sum">$190</td></tr>
+        <tr><td>Онлайн-запис + Google Calendar<span class="desc">Двостороння синхронізація, Telegram, захист від подвійної брони</span></td><td class="sum">$260</td></tr>
+        <tr><td>Контент і бренд<span class="desc">Розшифровка прайсу, тексти, логотип</span></td><td class="sum">$90</td></tr>
+        <tr><td>Публікація, налаштування, навчання<span class="desc">Хостинг, документація, передача</span></td><td class="sum">$80</td></tr>
+        <tr class="total"><td>Разом</td><td class="sum">$1 000</td></tr>
+      </tbody>
+    </table>
+    <p class="note"><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span>Суми орієнтовні й коригуються під фінальний обсяг. Двостороння інтеграція з календарем — окрема технічна робота, тому винесена в окрему позицію.</span></p>
+
+    <h3 style="font-family:var(--font-head);font-size:1.05rem;color:var(--accent-ink);margin:26px 0 10px">Опції за бажанням</h3>
+    <table class="tbl">
+      <tbody>
+        <tr><td>CRM-дашборд<span class="desc">Облік клієнтів, історія візитів, статистика записів</span></td><td class="sum">$250</td></tr>
+        <tr><td>Онлайн-оплата / передоплата<span class="desc">Картка, Apple&nbsp;Pay, Google&nbsp;Pay через еквайринг</span></td><td class="sum">$200</td></tr>
+      </tbody>
+    </table>
+    <p class="note-small" style="margin-top:10px">Опції не входять у базову вартість — підключаються за потреби.</p>
+  </section>
+
+  <!-- 4. Що далі -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">04</span><h2>Витрати після запуску</h2></div>
+    <div class="cols">
+      <div class="cost">
+        <h3>Хостинг</h3>
+        <div class="big">$0 / міс</div>
+        <p>GitHub Pages + Cloudflare Worker на безкоштовних тарифах.</p>
+      </div>
+      <div class="cost">
+        <h3>Домен</h3>
+        <div class="big">~$15 / рік</div>
+        <p>Реєстрація власного домену (за бажанням; можна лишитись на безкоштовній адресі).</p>
+      </div>
+      <div class="cost">
+        <h3>Супровід</h3>
+        <div class="big">$35 / міс</div>
+        <p>За бажанням: дрібні правки, оновлення, технічний нагляд.</p>
+      </div>
+      <div class="cost">
+        <h3>Правки власноруч</h3>
+        <div class="big">0 грн</div>
+        <p>Ціни та галерею власниця редагує сама, без розробника.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Етапи -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">05</span><h2>Етапи роботи</h2></div>
+    <div class="steps">
+      <div class="step"><b>1</b><span><strong>Прототип і структура</strong> — узгодження розділів</span></div>
+      <div class="step"><b>2</b><span><strong>Дизайн</strong> — макети під ПК і мобільний</span></div>
+      <div class="step"><b>3</b><span><strong>Верстка</strong> — адаптив, анімації</span></div>
+      <div class="step"><b>4</b><span><strong>Бекенд і календар</strong> — онлайн-запис, Google Calendar, Telegram</span></div>
+      <div class="step"><b>5</b><span><strong>Наповнення</strong> — прайс, фото, відео, тексти</span></div>
+      <div class="step"><b>6</b><span><strong>Тестування</strong> — крос-браузерне, мобільне</span></div>
+      <div class="step"><b>7</b><span><strong>Запуск і навчання</strong> — публікація, передача доступів</span></div>
+    </div>
+  </section>
+
+  <!-- 6. Умови -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">06</span><h2>Умови</h2></div>
+    <ul class="terms">
+      <li><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Оплата:</b> <span class="edit">50% передоплата, 50% після запуску</span>.</span></li>
+      <li><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Терміни:</b> <span class="edit">3–4 тижні</span> залежно від готовності контенту.</span></li>
+      <li><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Гарантія:</b> <span class="edit">1 місяць</span> безкоштовних правок після запуску.</span></li>
+      <li><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Передача прав:</b> усі вихідні коди, репозиторій, домен і доступи переходять замовнику.</span></li>
+    </ul>
+  </section>
+
+  <!-- Footer -->
+  <div class="foot pad">
+    <p class="slogan">Дякуємо за довіру 🐾</p>
+    <p>Готові почати — і зробити для «Little Paw» сайт, який записує клієнтів, поки ви дбаєте про хвостиків.</p>
+    <p class="contacts">Іван Бессараб · 099 982 79 54 · <a href="https://t.me/ivan_bessarab" style="color:var(--accent-ink);text-decoration:none">@ivan_bessarab</a></p>
+  </div>
+
+</div>
+</div>
+
+</body>
+</html>

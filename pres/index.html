@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Little Paw — сайт готовий</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&family=Nunito:wght@0,400;0,500;0,600;0,700;0,800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF6EE; --surface:#FFFFFF; --sand:#F4E8D6; --sand-2:#EFE0CB;
+  --ink:#3A2A1E; --ink-soft:#6E5844; --muted:#93795F;
+  --line:#E7D8C0; --line-soft:#F0E4D2;
+  --accent:#C25E38; --accent-ink:#A44C2B; --accent-soft:#F3DBCC; --gold:#BE8C33;
+  --shadow:0 22px 48px -28px rgba(58,42,30,.55); --shadow-sm:0 10px 24px -16px rgba(58,42,30,.5);
+  --font-head:"Comfortaa",system-ui,sans-serif; --font-body:"Nunito",system-ui,sans-serif; --font-script:"Caveat",cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#1E1712; --surface:#2A211A; --sand:#33271F; --sand-2:#3B2E24;
+  --ink:#F2E7D8; --ink-soft:#CDB9A2; --muted:#A38D77; --line:#3F3327; --line-soft:#342a20;
+  --accent:#DE8659; --accent-ink:#E9A17C; --accent-soft:#3A2A1F; --gold:#DCB061;
+  --shadow:0 26px 54px -28px rgba(0,0,0,.72); --shadow-sm:0 12px 28px -18px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  --paper:#1E1712; --surface:#2A211A; --sand:#33271F; --sand-2:#3B2E24;
+  --ink:#F2E7D8; --ink-soft:#CDB9A2; --muted:#A38D77; --line:#3F3327; --line-soft:#342a20;
+  --accent:#DE8659; --accent-ink:#E9A17C; --accent-soft:#3A2A1F; --gold:#DCB061;
+  --shadow:0 26px 54px -28px rgba(0,0,0,.72); --shadow-sm:0 12px 28px -18px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+.wrap{width:min(100% - 32px,760px);margin:0 auto;padding:44px 0 60px}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.pad{padding:clamp(24px,5vw,46px)}
+h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.18;margin:0;text-wrap:balance}
+.paw{width:1em;height:1em;fill:var(--accent);flex:none;vertical-align:-.12em}
+a{color:var(--accent-ink)}
+
+/* hero */
+.hero{background:
+    radial-gradient(120% 90% at 85% -10%,var(--accent-soft),transparent 60%),
+    linear-gradient(180deg,var(--sand),var(--surface));
+  border-bottom:1px solid var(--line);text-align:center}
+.brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;color:var(--accent-ink);font-size:1.05rem}
+.brand .paw{width:26px;height:26px}
+.brand em{font-style:normal;font-weight:500;color:var(--muted);font-size:.82em}
+.eyebrow{display:inline-block;font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--accent-ink);margin:24px 0 12px}
+.hero h1{font-size:clamp(2rem,6vw,3rem);color:var(--ink)}
+.hero .script{font-family:var(--font-script);color:var(--accent);font-size:1.15em;line-height:.9}
+.hero p{color:var(--ink-soft);margin:16px auto 0;max-width:46ch;font-size:1.08rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:.55em;font-family:var(--font-head);font-weight:600;font-size:1.02rem;
+  padding:.85em 1.7em;border-radius:999px;border:2px solid transparent;cursor:pointer;text-decoration:none;transition:transform .18s,box-shadow .18s,background .18s}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:var(--shadow-sm)}
+.btn-primary:hover{background:var(--accent-ink);transform:translateY(-3px);box-shadow:var(--shadow)}
+.btn-ghost{background:transparent;color:var(--accent-ink);border-color:var(--accent)}
+.btn-ghost:hover{background:var(--accent);color:#fff;transform:translateY(-3px)}
+.urlnote{margin-top:16px;font-size:.82rem;color:var(--muted)}
+.urlnote a{color:var(--muted)}
+
+section{border-top:1px solid var(--line-soft)}
+.s-head{display:flex;align-items:center;gap:10px;margin:0 0 18px}
+.s-head .paw{width:1.1em;height:1.1em}
+.s-head h2{font-size:1.3rem;color:var(--ink)}
+
+/* features */
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.feat div{display:flex;gap:10px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);
+  border-radius:12px;padding:14px 16px;font-size:.95rem;color:var(--ink-soft)}
+.feat b{color:var(--ink);font-weight:700}
+.feat .paw{margin-top:.2em}
+
+/* steps */
+.steps{display:grid;gap:12px;counter-reset:s}
+.step{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;background:var(--sand);border-radius:14px;padding:16px 18px}
+.step .n{width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--font-head);font-weight:700;
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;flex:none}
+.step h3{font-size:1rem;color:var(--ink);margin-bottom:3px}
+.step p{margin:0;color:var(--ink-soft);font-size:.93rem}
+.step a{font-weight:700}
+
+/* proposal card */
+.card-link{display:flex;align-items:center;gap:16px;background:var(--paper);border:1px solid var(--line);
+  border-radius:16px;padding:18px 20px;text-decoration:none;color:inherit;transition:.18s;box-shadow:var(--shadow-sm)}
+.card-link:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.card-link .ic{width:44px;height:44px;border-radius:12px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;flex:none}
+.card-link .ic .paw{width:24px;height:24px}
+.card-link .t{font-family:var(--font-head);font-weight:700;color:var(--ink)}
+.card-link .d{font-size:.9rem;color:var(--muted);margin-top:2px}
+.card-link .arrow{margin-left:auto;color:var(--accent-ink);font-size:1.4rem}
+
+.foot{background:linear-gradient(0deg,var(--sand),var(--surface));border-top:1px solid var(--line);text-align:center}
+.foot .slogan{font-family:var(--font-script);font-size:1.6rem;color:var(--accent);margin:0 0 8px}
+.foot p{margin:0 auto;color:var(--ink-soft);max-width:48ch;font-size:.95rem}
+.foot .contacts{margin-top:14px;font-weight:700;color:var(--ink)}
+.foot .contacts a{color:var(--accent-ink);text-decoration:none}
+@media (max-width:560px){.feat{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="wrap"><div class="sheet">
+
+  <!-- Hero -->
+  <div class="hero pad">
+    <div class="brand">
+      <svg class="paw" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>
+      Little&nbsp;Paw <em>by Hanna</em>
+    </div>
+    <p class="eyebrow">Ваш сайт готовий</p>
+    <h1>Сайт грумінг-салону <span class="script">готовий до перегляду</span></h1>
+    <p>Подивіться, як він виглядає та працює — з онлайн-записом, прайсом і галереєю. Нижче — деталі пропозиції та наступні кроки.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="../" target="_blank" rel="noopener">🐾 Переглянути сайт</a>
+      <a class="btn btn-ghost" href="kp.html" target="_blank" rel="noopener">Комерційна пропозиція</a>
+    </div>
+    <p class="urlnote">Адреса демо: <a href="../" target="_blank" rel="noopener">besenok911-cloud.github.io/little-paw-by-hanna</a></p>
+  </div>
+
+  <!-- Features -->
+  <section class="pad">
+    <div class="s-head"><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><h2>Що вміє сайт</h2></div>
+    <div class="feat">
+      <div><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Онлайн-запис</b> із синхронізацією Google Calendar</span></div>
+      <div><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Прайс 60+ порід</b> із пошуком</span></div>
+      <div><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Галерея</b> фото та відео з фільтрами</span></div>
+      <div><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Сповіщення в Telegram</b> про кожен запис</span></div>
+      <div><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Зручно на телефоні</b> — mobile-first</span></div>
+      <div><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span><b>Ціни змінюєте самі</b>, без розробника</span></div>
+    </div>
+  </section>
+
+  <!-- Proposal -->
+  <section class="pad">
+    <div class="s-head"><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><h2>Умови та вартість</h2></div>
+    <p style="font-size:1.05rem;margin:0 0 18px;color:var(--ink-soft)">Вартість проєкту — <b style="font-family:var(--font-head);color:var(--accent-ink);font-size:1.4rem">$1&nbsp;000</b> <span style="color:var(--muted);font-size:.9rem">· повна розбивка у пропозиції</span></p>
+    <a class="card-link" href="kp.html" target="_blank" rel="noopener">
+      <span class="ic"><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg></span>
+      <span><span class="t">Комерційна пропозиція</span><span class="d">Обсяг робіт, вартість, етапи та умови</span></span>
+      <span class="arrow">→</span>
+    </a>
+    <a class="card-link" style="margin-top:12px" href="../admin.html" target="_blank" rel="noopener">
+      <span class="ic"><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg></span>
+      <span><span class="t">CRM · панель обліку <span style="font-family:var(--font-body);font-weight:700;font-size:.72rem;color:var(--accent-ink);background:var(--accent-soft);padding:.15em .6em;border-radius:999px;vertical-align:.12em">опція</span></span><span class="d">Записи, клієнти й статистика в одному кабінеті · вхід за паролем</span></span>
+      <span class="arrow">→</span>
+    </a>
+  </section>
+
+  <!-- Next steps -->
+  <section class="pad">
+    <div class="s-head"><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><h2>Як далі</h2></div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><div><h3>Подивіться сайт</h3><p>Відкрийте демо й перевірте, як усе виглядає та працює.</p></div></div>
+      <div class="step"><span class="n">2</span><div><h3>Погодьте пропозицію</h3><p>Ознайомтесь із умовами та вартістю за посиланням вище.</p></div></div>
+      <div class="step"><span class="n">3</span><div><h3>Заповніть короткий бриф</h3><p>Контакти, прайс і налаштування — <a href="brief.html" target="_blank" rel="noopener">відкрити бриф →</a></p></div></div>
+      <div class="step"><span class="n">4</span><div><h3>Запуск</h3><p>Наповнюємо фінальним контентом, тестуємо запис — і сайт працює на вас.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="foot pad">
+    <p class="slogan">Турбота, як вдома 🐾</p>
+    <p>Готовий відповісти на будь-які питання та внести правки.</p>
+    <p class="contacts">Іван Бессараб · 099 982 79 54 · <a href="https://t.me/ivan_bessarab" target="_blank" rel="noopener">@ivan_bessarab</a></p>
+  </div>
+
+</div></div>
+
+</body>
+</html>

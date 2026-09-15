@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Бриф — Little Paw</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF6EE; --surface:#FFFFFF; --sand:#F4E8D6; --sand-2:#EFE0CB;
+  --ink:#3A2A1E; --ink-soft:#6E5844; --muted:#93795F;
+  --line:#E7D8C0; --line-soft:#F0E4D2;
+  --accent:#C25E38; --accent-ink:#A44C2B; --accent-soft:#F3DBCC; --gold:#BE8C33;
+  --field:#FFFFFF; --shadow:0 20px 44px -30px rgba(58,42,30,.55);
+  --font-head:"Comfortaa",system-ui,sans-serif; --font-body:"Nunito",system-ui,sans-serif; --font-script:"Caveat",cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#1E1712; --surface:#2A211A; --sand:#33271F; --sand-2:#3B2E24;
+  --ink:#F2E7D8; --ink-soft:#CDB9A2; --muted:#A38D77; --line:#3F3327; --line-soft:#342a20;
+  --accent:#DE8659; --accent-ink:#E9A17C; --accent-soft:#3A2A1F; --gold:#DCB061; --field:#211A14;
+  --shadow:0 24px 50px -30px rgba(0,0,0,.7);
+}}
+:root[data-theme="dark"]{
+  --paper:#1E1712; --surface:#2A211A; --sand:#33271F; --sand-2:#3B2E24;
+  --ink:#F2E7D8; --ink-soft:#CDB9A2; --muted:#A38D77; --line:#3F3327; --line-soft:#342a20;
+  --accent:#DE8659; --accent-ink:#E9A17C; --accent-soft:#3A2A1F; --gold:#DCB061; --field:#211A14;
+  --shadow:0 24px 50px -30px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);line-height:1.55;-webkit-font-smoothing:antialiased;font-size:16px}
+img{max-width:100%}
+.wrap{width:min(100% - 32px,760px);margin:0 auto;padding:40px 0 64px}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.pad{padding:clamp(22px,5vw,44px)}
+h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.2;margin:0;text-wrap:balance}
+.paw{width:1em;height:1em;fill:var(--accent);flex:none;vertical-align:-.12em}
+
+.mast{background:linear-gradient(180deg,var(--sand),var(--surface));border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;color:var(--accent-ink);font-size:1.02rem}
+.brand .paw{width:24px;height:24px}
+.brand em{font-style:normal;font-weight:500;color:var(--muted);font-size:.82em}
+.eyebrow{display:inline-block;font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--accent-ink);margin:22px 0 10px}
+.mast h1{font-size:clamp(1.7rem,5vw,2.3rem);color:var(--ink)}
+.mast .lede{color:var(--ink-soft);margin:.6em 0 0;max-width:52ch}
+.mast .lede b{color:var(--ink)}
+
+section{border-top:1px solid var(--line-soft)}
+.s-head{display:flex;align-items:baseline;gap:11px;margin:0 0 6px}
+.s-num{font-family:var(--font-head);font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.s-head h2{font-size:1.25rem;color:var(--ink)}
+.s-sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
+
+.q{margin:0 0 20px}
+.q>label,.q .qlabel{display:block;font-weight:700;color:var(--ink);margin-bottom:8px;font-size:.98rem}
+.q .hint{font-weight:400;color:var(--muted);font-size:.86rem}
+input[type=text],input[type=tel],textarea,select{
+  width:100%;font-family:var(--font-body);font-size:1rem;color:var(--ink);background:var(--field);
+  border:1.5px solid var(--line);border-radius:12px;padding:.66em .85em;transition:border-color .15s}
+textarea{min-height:64px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.7}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt span{display:inline-block;border:1.5px solid var(--line);border-radius:999px;padding:.5em 1em;font-weight:600;
+  font-size:.92rem;color:var(--ink-soft);cursor:pointer;transition:.15s;background:var(--field)}
+.opt input:checked+span{background:var(--accent);color:#fff;border-color:var(--accent)}
+.opt input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mt{margin-top:10px}
+.callout{display:flex;gap:9px;background:var(--accent-soft);border-radius:12px;padding:12px 14px;font-size:.9rem;color:var(--accent-ink);margin:0 0 16px}
+.callout .paw{margin-top:.2em}
+
+.actions{background:linear-gradient(0deg,var(--sand),var(--surface));border-top:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--font-head);font-weight:600;font-size:1rem;
+  padding:.8em 1.5em;border-radius:999px;border:0;cursor:pointer;background:var(--accent);color:#fff;transition:.2s}
+.btn:hover{background:var(--accent-ink);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--accent-ink);border:1.5px solid var(--accent)}
+.btn.ghost:hover{background:var(--accent);color:#fff}
+.out{margin-top:16px}
+.out textarea{min-height:180px;font-size:.9rem;background:var(--field)}
+.status{font-weight:700;color:#2f8f5b;margin:10px 0 0;min-height:1.2em}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.small{font-size:.85rem;color:var(--muted)}
+@media (max-width:560px){.split{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="wrap"><div class="sheet">
+
+  <div class="mast pad">
+    <div class="brand">
+      <svg class="paw" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg>
+      Little&nbsp;Paw <em>by Hanna</em>
+    </div>
+    <p class="eyebrow">Бриф для сайту</p>
+    <h1>Кілька питань — і сайт готовий</h1>
+    <p class="lede">Заповніть, будь ласка, те, що знаєте. Наприкінці натисніть <b>«Зібрати відповіді»</b> — отримаєте готовий текст, який просто надішліть у Telegram. Фото (логотип, сертифікати, котики) надішліть окремо файлами.</p>
+  </div>
+
+  <form id="brief">
+
+  <!-- A. Контент -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">A</span><h2>Контакти та контент</h2></div>
+    <p class="s-sub">Перевірте, що я підставив, і виправте за потреби.</p>
+
+    <div class="q" data-q="Телефон салону">
+      <label>Телефон салону <span class="hint">— для кнопки дзвінка</span></label>
+      <input type="tel" name="phone" value="+38 063 393 37 77">
+    </div>
+    <div class="split">
+      <div class="q" data-q="Telegram салону"><label>Telegram <span class="hint">(@нік)</span></label><input type="text" name="tg" placeholder="@littlepaw..."></div>
+      <div class="q" data-q="Viber"><label>Viber <span class="hint">(номер)</span></label><input type="text" name="viber" placeholder="+380..."></div>
+    </div>
+    <div class="q" data-q="Адреса"><label>Адреса салону</label><input type="text" name="addr" value="Київ, вул. Драгоманова, 31Б"></div>
+    <div class="q" data-q="Instagram"><label>Instagram</label><input type="text" name="ig" value="@littlepaw_by_hanna"></div>
+
+    <div class="q" data-q="Прайс перевірено">
+      <span class="qlabel">Прайс — чи всі ціни правильні?</span>
+      <div class="callout"><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span>Особливо звірте у «Комплекс + стрижка»: <b>Спанієль (коротка/модельна)</b> та <b>Мітельшнауцер</b>.</span></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="price_ok" value="ok" data-label="усі ціни правильні"><span>✔ Все правильно</span></label>
+        <label class="opt"><input type="radio" name="price_ok" value="fix" data-label="є що виправити"><span>✎ Є що виправити</span></label>
+      </div>
+      <textarea class="mt" name="price_fix" placeholder="Якщо є правки — напишіть, які саме (порода → нова ціна)"></textarea>
+    </div>
+
+    <div class="q" data-q="Файли надішле">
+      <span class="qlabel">Що надішлете окремо файлами?</span>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="f_logo" value="1" data-label="логотип (вектор/SVG)"><span>Логотип у векторі</span></label>
+        <label class="opt"><input type="checkbox" name="f_cert" value="1" data-label="сертифікати/дипломи"><span>Сертифікати</span></label>
+        <label class="opt"><input type="checkbox" name="f_cats" value="1" data-label="кращі фото котиків"><span>Фото котиків</span></label>
+        <label class="opt"><input type="checkbox" name="f_other" value="1" data-label="інші фото/відео"><span>Інші фото/відео</span></label>
+      </div>
+    </div>
+
+    <div class="q" data-q="Відгуки">
+      <span class="qlabel">Розділ «Відгуки» — потрібен?</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="reviews" value="yes" data-label="так, потрібен"><span>Так</span></label>
+        <label class="opt"><input type="radio" name="reviews" value="no" data-label="ні"><span>Ні</span></label>
+        <label class="opt"><input type="radio" name="reviews" value="later" data-label="пізніше"><span>Пізніше</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- B. Запис -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">B</span><h2>Налаштування онлайн-запису</h2></div>
+    <p class="s-sub">Підтвердіть або виправте — я поставив орієнтовні значення.</p>
+
+    <div class="q" data-q="Графік роботи"><label>Дні та години роботи</label><input type="text" name="hours" value="Щодня, 10:00–20:00"></div>
+
+    <div class="q" data-q="Тривалість послуг">
+      <label>Скільки триває послуга <span class="hint">— щоб правильно рахувати вільні слоти</span></label>
+      <textarea name="durations" placeholder="Напр.: гігієна ~2 год, стрижка ~2.5 год, коти ~2.5 год, дрібні (кігті/вушка) ~45 хв">Гігієна ~2 год · Комплекс+стрижка ~2.5 год · Коти ~2.5 год · Дрібні ~45 хв</textarea>
+    </div>
+
+    <div class="split">
+      <div class="q" data-q="Буфер між записами"><label>Перерва між записами</label><input type="text" name="buffer" value="30 хв"></div>
+      <div class="q" data-q="Скільки майстрів">
+        <span class="qlabel">Скільки майстрів приймає одночасно?</span>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="masters" value="1" data-label="1 майстер"><span>1</span></label>
+          <label class="opt"><input type="radio" name="masters" value="2+" data-label="кілька майстрів"><span>Кілька</span></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C. Решения -->
+  <section class="pad">
+    <div class="s-head"><span class="s-num">C</span><h2>Рішення</h2></div>
+
+    <div class="q" data-q="Свій домен">
+      <span class="qlabel">Хочете свій домен? <span class="hint">(напр. littlepaw.com.ua)</span></span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="domain" value="yes" data-label="так, хочу домен"><span>Так</span></label>
+        <label class="opt"><input type="radio" name="domain" value="no" data-label="ні, поки без домену"><span>Ні / поки без</span></label>
+      </div>
+      <input class="mt" type="text" name="domain_name" placeholder="Бажане ім'я домену (якщо так)">
+    </div>
+
+    <div class="q" data-q="Нагадування клієнту">
+      <span class="qlabel">Нагадування клієнту про візит + підтвердження?</span>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="rem_email" value="1" data-label="email-підтвердження"><span>Email клієнту</span></label>
+        <label class="opt"><input type="checkbox" name="rem_day" value="1" data-label="нагадування за добу"><span>Нагадування за добу</span></label>
+        <label class="opt"><input type="checkbox" name="rem_no" value="1" data-label="поки не треба"><span>Поки не треба</span></label>
+      </div>
+    </div>
+
+    <div class="q" data-q="Політика конфіденційності">
+      <span class="qlabel">Додати коротку згоду на обробку даних у форму запису?</span>
+      <span class="hint">Форма збирає ім'я й телефон — для України бажано.</span>
+      <div class="opts mt">
+        <label class="opt"><input type="radio" name="privacy" value="yes" data-label="так, додати"><span>Так</span></label>
+        <label class="opt"><input type="radio" name="privacy" value="no" data-label="ні"><span>Ні</span></label>
+      </div>
+    </div>
+
+    <div class="q" data-q="Онлайн-передоплата">
+      <span class="qlabel">Онлайн-передоплата на сайті? <span class="hint">— зменшує «неявки»</span></span>
+      <div class="callout"><svg class="paw" viewBox="0 0 24 24"><path d="M12 13.4c2.1 0 4.3 1.5 4.3 3.6 0 1.4-1.1 2.3-2.6 2.3-.8 0-1.2-.3-1.7-.3s-.9.3-1.7.3c-1.5 0-2.6-.9-2.6-2.3 0-2.1 2.2-3.6 4.3-3.6Z"/><ellipse cx="6.7" cy="11" rx="1.6" ry="2.1"/><ellipse cx="17.3" cy="11" rx="1.6" ry="2.1"/><ellipse cx="9.8" cy="7.7" rx="1.5" ry="2"/><ellipse cx="14.2" cy="7.7" rx="1.5" ry="2"/></svg><span>З онлайн-оплатою <b>Apple&nbsp;Pay і Google&nbsp;Pay</b> працюють автоматично.</span></div>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="pay" value="yes" data-label="так, потрібна"><span>Так</span></label>
+        <label class="opt"><input type="radio" name="pay" value="no" data-label="ні"><span>Ні</span></label>
+        <label class="opt"><input type="radio" name="pay" value="later" data-label="можливо пізніше"><span>Пізніше</span></label>
+      </div>
+    </div>
+
+    <div class="q" data-q="Що оплачувати онлайн">
+      <span class="qlabel">Якщо так — що оплачувати?</span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="pay_what" value="deposit" data-label="депозит (частина суми)"><span>Депозит</span></label>
+        <label class="opt"><input type="radio" name="pay_what" value="full" data-label="повна сума"><span>Повна сума</span></label>
+        <label class="opt"><input type="radio" name="pay_what" value="hotel" data-label="тільки готель/pawplay"><span>Тільки готель/pawplay</span></label>
+      </div>
+      <input class="mt" type="text" name="pay_deposit" placeholder="Сума депозиту, грн (якщо обрали депозит)">
+    </div>
+
+    <div class="q" data-q="Еквайринг / ФОП">
+      <span class="qlabel">Чи є підключений еквайринг? <span class="hint">— щоб приймати оплату</span></span>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="acq" value="mono" data-label="Monobank"><span>Monobank</span></label>
+        <label class="opt"><input type="radio" name="acq" value="liqpay" data-label="LiqPay / Приват"><span>LiqPay</span></label>
+        <label class="opt"><input type="radio" name="acq" value="other" data-label="інший провайдер"><span>Інший</span></label>
+        <label class="opt"><input type="radio" name="acq" value="none" data-label="поки немає"><span>Поки немає</span></label>
+      </div>
+    </div>
+
+    <div class="q" data-q="Коментар / побажання"><label>Що ще додати або змінити?</label><textarea name="notes" placeholder="Будь-які побажання..."></textarea></div>
+  </section>
+
+  </form>
+
+  <!-- Actions -->
+  <div class="actions pad">
+    <div class="tools">
+      <button type="button" class="btn" id="collect">Зібрати відповіді 🐾</button>
+      <button type="button" class="btn ghost" id="clear">Очистити</button>
+    </div>
+    <div class="out" id="out" hidden>
+      <p class="small">Скопіюйте цей текст і надішліть у Telegram <b>@ivan_bessarab</b> (кнопка вже намагається скопіювати автоматично):</p>
+      <textarea id="result" readonly></textarea>
+      <button type="button" class="btn" id="copy" style="margin-top:10px">Скопіювати</button>
+      <p class="status" id="status"></p>
+    </div>
+    <p class="small" style="margin-top:14px">Заповнене зберігається у вашому браузері — можна повернутись пізніше. Фото надсилайте окремо файлами.</p>
+  </div>
+
+</div></div>
+
+<script>
+(function(){
+  var KEY='littlepaw_brief_v1', form=document.getElementById('brief');
+  function save(){try{var d={};form.querySelectorAll('[name]').forEach(function(el){
+    if(el.type==='radio'||el.type==='checkbox')d[el.name+'::'+el.value]=el.checked;else d[el.name]=el.value;});
+    localStorage.setItem(KEY,JSON.stringify(d));}catch(e){}}
+  function load(){try{var d=JSON.parse(localStorage.getItem(KEY)||'{}');form.querySelectorAll('[name]').forEach(function(el){
+    if(el.type==='radio'||el.type==='checkbox'){var k=el.name+'::'+el.value;if(k in d)el.checked=d[k];}
+    else if(el.name in d)el.value=d[el.name];});}catch(e){}}
+  form.addEventListener('input',save);form.addEventListener('change',save);load();
+
+  function build(){
+    var out='БРИФ — Little Paw by Hanna\n(заповнила Ганна)\n\n';
+    document.querySelectorAll('.q').forEach(function(q){
+      var label=q.dataset.q,ans=[];
+      q.querySelectorAll('input[type=radio]:checked,input[type=checkbox]:checked').forEach(function(r){ans.push(r.dataset.label||r.value);});
+      q.querySelectorAll('input[type=text],input[type=tel],textarea,select').forEach(function(f){var v=(f.value||'').trim();if(v)ans.push(v);});
+      out+='• '+label+': '+(ans.length?ans.join('; '):'—')+'\n';
+    });
+    return out;
+  }
+  var out=document.getElementById('out'),result=document.getElementById('result'),status=document.getElementById('status');
+  function tryCopy(text){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      return navigator.clipboard.writeText(text).then(function(){return true;}).catch(function(){return false;});
+    }
+    return Promise.resolve(false);
+  }
+  function fallbackCopy(){try{result.focus();result.select();return document.execCommand('copy');}catch(e){return false;}}
+  document.getElementById('collect').addEventListener('click',function(){
+    result.value=build();out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'center'});
+    tryCopy(result.value).then(function(ok){
+      if(!ok)ok=fallbackCopy();
+      status.textContent=ok?'✓ Скопійовано! Вставте у Telegram @ivan_bessarab та надішліть.':'Виділіть текст вище й натисніть Ctrl+C, потім надішліть у Telegram.';
+    });
+  });
+  document.getElementById('copy').addEventListener('click',function(){
+    tryCopy(result.value).then(function(ok){if(!ok)ok=fallbackCopy();status.textContent=ok?'✓ Скопійовано!':'Виділіть текст і Ctrl+C.';});
+  });
+  document.getElementById('clear').addEventListener('click',function(){
+    if(!confirm('Очистити всі відповіді?'))return;
+    try{localStorage.removeItem(KEY);}catch(e){}
+    form.reset();out.hidden=true;status.textContent='';
+  });
+})();
+</script>
+
+</body>
+</html>
