@@ -149,6 +149,9 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   function fmtInt(n){return (n||0).toLocaleString("uk-UA")}
   function phoneKey(p){return String(p||"").replace(/\D/g,"").slice(-10)}
   function monthKey(d){return (d||"").slice(0,7)}
+  // YYYY-MM from a Date using LOCAL parts (toISOString would shift month
+  // boundaries to the previous month in timezones ahead of UTC, e.g. UA).
+  function ymOf(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)}
   var DOW=["Нд","Пн","Вт","Ср","Чт","Пт","Сб"];
   var MONTHS=["січ","лют","бер","кві","тра","чер","лип","сер","вер","жов","лис","гру"];
   var STATUSES=[["new","Нова"],["confirmed","Підтверджено"],["done","Виконано"],["no-show","Неявка"],["canceled","Скасовано"]];
@@ -178,7 +181,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   }
 
   function render(){
-    var now=new Date(), curMonth=now.toISOString().slice(0,7);
+    var now=new Date(), curMonth=ymOf(now);
     var real=bookings.filter(function(b){return !b.is_request});
     // clients by phone
     var clients={};
@@ -216,7 +219,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     var months=[];
     for(var i=5;i>=0;i--){var d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push(d)}
     bars($("#byMonth"), months.map(function(d){
-      var mk=d.toISOString().slice(0,7);
+      var mk=ymOf(d);
       var c=bookings.filter(function(b){var dt=b.date||(b.created_at||"").slice(0,10);return monthKey(dt)===mk}).length;
       return {n:MONTHS[d.getMonth()]+" "+String(d.getFullYear()).slice(2), v:c};
     }));
