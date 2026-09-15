@@ -62,6 +62,15 @@ export default {
           "SELECT * FROM bookings ORDER BY id DESC LIMIT 5000").all();
         return json({ ok: true, bookings: results }, cors);
       }
+      if (url.pathname === "/admin/status" && request.method === "POST") {
+        const b = await request.json();
+        if (!env.ADMIN_KEY || b.key !== env.ADMIN_KEY)
+          return json({ ok: false, error: "unauthorized" }, cors, 401);
+        const allowed = ["new", "confirmed", "done", "no-show", "canceled"];
+        if (!allowed.includes(b.status)) return json({ ok: false, error: "bad status" }, cors, 400);
+        await env.DB.prepare("UPDATE bookings SET status=? WHERE id=?").bind(b.status, b.id).run();
+        return json({ ok: true }, cors);
+      }
       return json({ ok: false, error: "not found" }, cors, 404);
     } catch (e) {
       return json({ ok: false, error: String(e && e.message || e) }, cors, 500);

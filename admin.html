@@ -76,6 +76,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 .search{width:100%;max-width:280px;padding:.55em .8em;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font-family:var(--fb);margin-bottom:12px}
 .search:focus{outline:none;border-color:var(--accent)}
 .tag{display:inline-block;background:var(--accent-soft);color:var(--accent-ink);font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px}
+.stsel{font-family:var(--fb);font-weight:700;font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:3px 8px;cursor:pointer;background:var(--paper);color:var(--ink)}
+.stsel:focus{outline:none;border-color:var(--accent)}
+.st-new{background:var(--sand);color:var(--ink-soft)}
+.st-confirmed{background:#d7e7ff;color:#1e5aa8}
+.st-done{background:#d6f2e2;color:#1f7a4d}
+.st-no-show{background:#fbdfd4;color:#b0472b}
+.st-canceled{background:#e7e2da;color:#8a7d6c}
 .empty{color:var(--muted);text-align:center;padding:30px}
 .muted{color:var(--muted);font-size:.85rem}
 @media (max-width:720px){.grid{grid-template-columns:1fr}.bar{grid-template-columns:96px 1fr auto}}
@@ -125,7 +132,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   <div class="panel">
     <h2>Останні записи</h2>
     <div class="tbl-wrap"><table id="recentTbl">
-      <thead><tr><th>Створено</th><th>Дата візиту</th><th>Клієнт</th><th>Телефон</th><th>Послуга / порода</th><th>Час</th></tr></thead>
+      <thead><tr><th>Створено</th><th>Дата візиту</th><th>Клієнт</th><th>Телефон</th><th>Послуга / порода</th><th>Час</th><th>Статус</th></tr></thead>
       <tbody></tbody>
     </table></div>
   </div>
@@ -144,6 +151,8 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   function monthKey(d){return (d||"").slice(0,7)}
   var DOW=["Нд","Пн","Вт","Ср","Чт","Пт","Сб"];
   var MONTHS=["січ","лют","бер","кві","тра","чер","лип","сер","вер","жов","лис","гру"];
+  var STATUSES=[["new","Нова"],["confirmed","Підтверджено"],["done","Виконано"],["no-show","Неявка"],["canceled","Скасовано"]];
+  function stSelect(b){var st=b.status||"new";return '<select class="stsel st-'+st+'" data-id="'+b.id+'">'+STATUSES.map(function(s){return '<option value="'+s[0]+'"'+(s[0]===st?' selected':'')+'>'+s[1]+'</option>'}).join("")+'</select>';}
 
   async function load(key){
     errEl.textContent="";
@@ -199,6 +208,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
       ["Цього місяця",fmtInt(bookMonth)],
       ["Клієнтів",fmtInt(clientArr.length)],
       ["Повторних",fmtInt(repeat)],
+      ["Неявки",fmtInt(bookings.filter(function(b){return b.status==='no-show'}).length)],
       ["Виручка / міс *",fmtInt(Math.round(revMonth))+" ₴"],
     ].map(function(k){return '<div class="kpi"><div class="v">'+k[1]+'</div><div class="l">'+k[0]+'</div></div>'}).join("");
 
@@ -230,8 +240,8 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
       return "<tr><td class='muted'>"+(b.created_at||"").slice(0,16).replace("T"," ")+"</td><td>"+
         (b.is_request?"<span class='tag'>заявка</span>":(b.date||"—")+" "+(b.time||""))+"</td><td>"+
         esc(b.name)+"</td><td>"+esc(b.phone)+"</td><td>"+esc(b.service)+(b.breed?" · "+esc(b.breed):"")+"</td><td class='muted'>"+
-        (b.duration?Math.floor(b.duration/60)+"г "+(b.duration%60?b.duration%60+"хв":""):"")+"</td></tr>";
-    }).join("") || '<tr><td colspan="6" class="empty">Ще немає записів</td></tr>';
+        (b.duration?Math.floor(b.duration/60)+"г "+(b.duration%60?b.duration%60+"хв":""):"")+"</td><td>"+stSelect(b)+"</td></tr>";
+    }).join("") || '<tr><td colspan="7" class="empty">Ще немає записів</td></tr>';
   }
 
   var _clients=[];
@@ -255,6 +265,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   $("#refresh").addEventListener("click",function(){load(sessionStorage.getItem(KEYNAME)||"")});
   $("#logout").addEventListener("click",function(){try{sessionStorage.removeItem(KEYNAME)}catch(e){}location.reload()});
   $("#clientSearch").addEventListener("input",function(){renderClients(_clients)});
+  $("#recentTbl").addEventListener("change",async function(e){
+    var s=e.target.closest(".stsel"); if(!s)return;
+    var id=+s.dataset.id, status=s.value; s.className="stsel st-"+status;
+    var b=bookings.find(function(x){return x.id===id}); if(b)b.status=status;
+    try{await fetch(WORKER+"/admin/status",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({key:sessionStorage.getItem(KEYNAME)||"",id:id,status:status})});}catch(err){}
+  });
 
   var saved=null; try{saved=sessionStorage.getItem(KEYNAME)}catch(e){}
   if(saved) load(saved);

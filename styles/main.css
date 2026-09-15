@@ -265,6 +265,8 @@ h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.15;margin:0}
   background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:.5em .9em;cursor:pointer;transition:.15s}
 .slot:hover{border-color:var(--terra);transform:translateY(-2px)}
 .slot.is-sel{background:var(--terra);color:#fff;border-color:var(--terra)}
+.consent-lbl{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-weight:400;color:var(--ink-soft);font-size:.88rem;line-height:1.45}
+.consent-lbl input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--terra);cursor:pointer}
 .booking-submit{align-items:center;text-align:center;gap:12px;margin-top:4px}
 .form-status{margin:0;font-weight:700;min-height:1.2em}
 .form-status.ok{color:#2f8f5b}.form-status.err{color:#c0472b}
