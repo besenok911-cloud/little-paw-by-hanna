@@ -256,6 +256,9 @@ h1,h2,h3{font-family:var(--font-head);font-weight:700;line-height:1.15;margin:0}
   padding:.72em .95em;border:1.5px solid var(--line);border-radius:14px;background:#fff;transition:border-color .2s;
   width:100%;max-width:100%;min-width:0;box-sizing:border-box}
 .field select{text-overflow:ellipsis}
+/* iOS Safari sizes input[type=date] to its native control and ignores width:100%;
+   resetting the appearance makes it obey the column width like the other fields. */
+.field input[type=date]{-webkit-appearance:none;appearance:none;min-height:3em}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--terra)}
 .field input:invalid:not(:placeholder-shown){border-color:#d98b6a}
 .seg{display:flex;gap:8px}
