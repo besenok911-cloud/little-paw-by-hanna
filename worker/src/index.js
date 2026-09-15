@@ -68,6 +68,9 @@ export default {
       if (url.pathname === "/pay/webhook" && request.method === "POST") {
         return json(await payWebhook(await request.json().catch(() => ({})), env), cors);
       }
+      if (url.pathname === "/brief" && request.method === "POST") {
+        return json(await sendBrief(await request.json().catch(() => ({})), env), cors);
+      }
       if (url.pathname === "/admin/status" && request.method === "POST") {
         const b = await request.json();
         if (!env.ADMIN_KEY || b.key !== env.ADMIN_KEY)
@@ -314,6 +317,22 @@ async function payWebhook(body, env) {
   const data = await res.json();
   if (data.status === "success" && env.DB) {
     try { await env.DB.prepare("UPDATE bookings SET paid=1 WHERE invoice_id=?").bind(body.invoiceId).run(); } catch (e) {}
+  }
+  return { ok: true };
+}
+
+async function sendBrief(body, env) {
+  const raw = String(body.text || "").trim().slice(0, 3500);
+  if (!raw) return { ok: false, error: "empty" };
+  if (env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_CHAT_ID) {
+    const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const text = "📋 <b>Бриф заповнено (Little Paw)</b>\n\n" + esc(raw);
+    const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text, parse_mode: "HTML" }),
+    });
+    if (!r.ok) return { ok: false, error: "telegram" };
   }
   return { ok: true };
 }

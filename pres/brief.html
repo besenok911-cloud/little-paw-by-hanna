@@ -243,14 +243,14 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.7}
   <!-- Actions -->
   <div class="actions pad">
     <div class="tools">
-      <button type="button" class="btn" id="collect">Зібрати відповіді 🐾</button>
+      <button type="button" class="btn" id="send">Надіслати відповіді 🐾</button>
       <button type="button" class="btn ghost" id="clear">Очистити</button>
     </div>
+    <p class="status" id="status"></p>
     <div class="out" id="out" hidden>
-      <p class="small">Скопіюйте цей текст і надішліть у Telegram <b>@ivan_bessarab</b> (кнопка вже намагається скопіювати автоматично):</p>
+      <p class="small">Не вдалося надіслати автоматично. Скопіюйте цей текст і надішліть у Telegram <b>@ivan_bessarab</b>:</p>
       <textarea id="result" readonly></textarea>
       <button type="button" class="btn" id="copy" style="margin-top:10px">Скопіювати</button>
-      <p class="status" id="status"></p>
     </div>
     <p class="small" style="margin-top:14px">Заповнене зберігається у вашому браузері — можна повернутись пізніше. Фото надсилайте окремо файлами.</p>
   </div>
@@ -278,7 +278,9 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.7}
     });
     return out;
   }
+  var WORKER='https://littlepaw-booking.besenok911.workers.dev';
   var out=document.getElementById('out'),result=document.getElementById('result'),status=document.getElementById('status');
+  var sendBtn=document.getElementById('send');
   function tryCopy(text){
     if(navigator.clipboard&&navigator.clipboard.writeText){
       return navigator.clipboard.writeText(text).then(function(){return true;}).catch(function(){return false;});
@@ -286,15 +288,28 @@ input::placeholder,textarea::placeholder{color:var(--muted);opacity:.7}
     return Promise.resolve(false);
   }
   function fallbackCopy(){try{result.focus();result.select();return document.execCommand('copy');}catch(e){return false;}}
-  document.getElementById('collect').addEventListener('click',function(){
-    result.value=build();out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'center'});
-    tryCopy(result.value).then(function(ok){
-      if(!ok)ok=fallbackCopy();
-      status.textContent=ok?'✓ Скопійовано! Вставте у Telegram @ivan_bessarab та надішліть.':'Виділіть текст вище й натисніть Ctrl+C, потім надішліть у Telegram.';
-    });
+  function showFallback(text){
+    result.value=text;out.hidden=false;out.scrollIntoView({behavior:'smooth',block:'center'});
+    tryCopy(text).then(function(ok){if(!ok)fallbackCopy();});
+  }
+  sendBtn.addEventListener('click',function(){
+    var text=build();
+    status.style.color='';status.textContent='Надсилаємо…';sendBtn.disabled=true;
+    fetch(WORKER+'/brief',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        sendBtn.disabled=false;
+        if(d&&d.ok){status.style.color='#2f8f5b';status.textContent='✓ Дякуємо! Відповіді надіслані. Ми зв’яжемось із вами.';out.hidden=true;}
+        else{throw new Error('bad');}
+      })
+      .catch(function(){
+        sendBtn.disabled=false;
+        status.style.color='#c0562f';status.textContent='Не вдалося надіслати автоматично — скопіюйте текст нижче й надішліть у Telegram.';
+        showFallback(text);
+      });
   });
   document.getElementById('copy').addEventListener('click',function(){
-    tryCopy(result.value).then(function(ok){if(!ok)ok=fallbackCopy();status.textContent=ok?'✓ Скопійовано!':'Виділіть текст і Ctrl+C.';});
+    tryCopy(result.value).then(function(ok){if(!ok)ok=fallbackCopy();status.style.color='#2f8f5b';status.textContent=ok?'✓ Скопійовано! Надішліть у Telegram @ivan_bessarab.':'Виділіть текст і Ctrl+C.';});
   });
   document.getElementById('clear').addEventListener('click',function(){
     if(!confirm('Очистити всі відповіді?'))return;
